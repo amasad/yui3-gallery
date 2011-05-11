@@ -1,15 +1,15 @@
 //constructor
-function CarouselRTlPlugin () {
-  CarouselRTlPlugin.superclass.constructor.apply(this, arguments);
+function CarouselRTLPlugin () {
+  CarouselRTLPlugin.superclass.constructor.apply(this, arguments);
 }
 var JS = Y.Lang;
 
 
 //Module stuff
-CarouselRTlPlugin.NAME = "carouselRTlPlugin";
-CarouselRTlPlugin.NS = "rtl";
+CarouselRTLPlugin.NAME = "carouselRTLPlugin";
+CarouselRTLPlugin.NS = "rtl";
 
-CarouselRTlPlugin.ATTRS = {
+CarouselRTLPlugin.ATTRS = {
   animation: {
     validator: "_validateAnimation",
     value: { speed: 0, effect: Y.Easing.easeOut }
@@ -25,7 +25,7 @@ function fixDir (elem) {
     .setStyle("right", left);
 }
 //Class
-Y.CarouselRTlPlugin = Y.extend(CarouselRTlPlugin, Y.Plugin.Base, {
+Y.CarouselRTLPlugin = Y.extend(CarouselRTLPlugin, Y.Plugin.Base, {
   initializer: function (config) {
     //After the plugin is fully loaded and rendered fix its direction
     this.afterHostMethod("render", this.renderFix);
