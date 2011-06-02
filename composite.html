@@ -1,0 +1,123 @@
+
+ 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="content-type" content="text/html; charset=utf-8"> 
+<title>Simple Sortable List</title> 
+ 
+<style type="text/css"> 
+/*margin and padding on body element
+  can introduce errors in determining
+  element position and are not recommended;
+  we turn them off as a foundation for YUI
+  CSS treatments. */
+body {
+	margin:0;
+	padding:0;
+}
+</style> 
+ 
+<link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssfonts/fonts-min.css" /> 
+<script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script> 
+<script src="build/gallery-sortable-array/gallery-sortable-array.js"></script>
+<!--there is no custom header content for this example--> 
+ 
+</head> 
+ 
+<body class="yui3-skin-sam  yui-skin-sam"> 
+ 
+<h1>Composite Sortable List</h1> 
+ 
+<div class="exampleIntro"> 
+	<p>Making a composite data sortable array list.</p> 
+			
+</div> 
+ 
+<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== --> 
+ 
+<style> 
+    #demo li {
+        list-style-type: none;
+        padding: 3px;
+        width: 150px;
+        border: 1px solid black;
+        margin: 3px;
+        background-color: #8DD5E7;
+    }
+</style> 
+ 
+<div id="demo"> 
+<ul> 
+    <li>Item #1</li> 
+    <li>Item #2</li> 
+    <li>Item #3</li> 
+    <li>Item #4</li> 
+    <li>Item #5</li> 
+    <li>Item #6</li> 
+    <li>Item #7</li> 
+    <li>Item #8</li> 
+    <li>Item #9</li> 
+    <li>Item #10</li> 
+</ul> 
+<button id="show-data">Show Data</button>
+</div> 
+ 
+<script> 
+var data = [
+  {
+    color: "green",
+    number: "1"
+  },
+  {
+    color: "black",
+    number: "12"
+  },
+  {
+    color: "blue",
+    number: "2"
+  },
+  {
+    color: "yellow",
+    number: "3"
+  },
+  {
+    color: "red",
+    number: "9"
+  },
+  {
+    color: "white",
+    number: "0"
+  }
+  
+]; 
+
+YUI({ filter: 'raw' }).use('gallery-sortable-array', function(Y) {
+    var sortable = new Y.Sortable({
+        container: '#demo',
+        nodes: 'li',
+        opacity: '.1'
+    });
+    sortable.plug(Y.SortableArray, {
+      dataArray: data,
+      observable: 'color'
+    });
+    
+    // show notification when the array changes
+    var not = Y.Node.create('<span style="display:none;position:absolute;left:50%;top:0;background-color:red;">Array Changed</span>');
+    not.appendTo('body');
+    sortable.on('arraychange', function(){
+      not.show();
+      setTimeout(function(){not.hide()}, 400);
+    });
+    
+    // show data
+    Y.one('#show-data').on('click', function () {
+      Y.one('body').appendChild('<div>' + JSON.stringify(data) + '</div>');
+    });
+});
+</script> 
+
+<script type="text/javascript" src="http://track2.mybloglog.com/js/jsserv.php?mblID=2007020704011645"></script> 
+</body> 
+</html>

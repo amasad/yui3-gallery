@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+<meta http-equiv="content-type" content="text/html; charset=utf-8"> 
+<title>Multiple Sortable Lists - Full Join</title> 
+ 
+<style type="text/css"> 
+/*margin and padding on body element
+  can introduce errors in determining
+  element position and are not recommended;
+  we turn them off as a foundation for YUI
+  CSS treatments. */
+body {
+	margin:0;
+	padding:0;
+}
+</style> 
+ 
+<link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/3.3.0/build/cssfonts/fonts-min.css" /> 
+<script type="text/javascript" src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"></script> 
+<script type="text/javascript" src="build/gallery-sortable-array/gallery-sortable-array-min.js"></script> 
+<!--there is no custom header content for this example--> 
+ 
+</head> 
+ 
+<body class="yui3-skin-sam  yui-skin-sam"> 
+ 
+<h1>Multiple Sortable Lists - Full Join</h1> 
+ 
+<div class="exampleIntro"> 
+	<p>This example makes multiple sortable lists that are fully joined together.</p> 
+			
+</div> 
+ 
+<!--BEGIN SOURCE CODE FOR EXAMPLE =============================== --> 
+ 
+<style> 
+    #demo {
+        float: none;
+        border: 1px solid black;
+    }
+    #demo li {
+        background-image: none;
+        list-style-type: none;
+        padding: 3px;
+        width: 150px;
+        border: 1px solid black;
+        margin: 3px;
+        background-color: #8DD5E7;
+    }
+</style> 
+ 
+<div id="demo" class="yui-g"> 
+    <div class="yui-u first"> 
+        <ul id="list1"> 
+        </ul> 
+	</div> 
+    <div class="yui-u"> 
+        <ul id="list2"> 
+       </ul> 
+	</div> 
+</div> 
+<button id="show-data">Show Data</button> 
+<script> 
+list1_data = [
+	{
+		name: 'Apple',
+		color: 'Red'	
+	},
+	{
+		name: 'Orange',
+		color: 'Orange'
+	},
+	{
+		name: 'Banana',
+		color: 'Yellow'
+	},
+	{
+		name: 'Tomatoe',
+		color: 'Red'
+	},
+	{
+		name: 'Cucumber',
+		color: 'Green'
+	}
+];
+list2_data = [
+	{
+		name: 'Strawbery',
+		color: 'Red'
+	},
+	{
+		name: 'Carrot',
+		color: 'Orange'
+	},
+	{
+		name: 'Eggplant',
+		color: 'Black'
+	}
+];
+YUI({ filter: 'raw' }).use('dd-constrain', 'gallery-sortable-array', function(Y) {
+    var list1 = new Y.Sortable({
+        container: '#list1',
+        nodes: 'li',
+        opacity: '.1'
+    });
+    list1.delegate.dd.plug(Y.Plugin.DDConstrained, {
+        constrain2node: '#demo'
+    });
+ 
+    var list2 = new Y.Sortable({
+        container: '#list2',
+        nodes: 'li',
+        opacity: '.1'
+    });
+    list2.delegate.dd.plug(Y.Plugin.DDConstrained, {
+        constrain2node: '#demo'
+    });
+
+    list1.plug(Y.SortableArray, {
+        dataArray: list1_data,
+        observable: 'name'
+    });
+    
+    list2.plug(Y.SortableArray,{
+        dataArray: list2_data,
+        observable: 'name'
+    });
+ 
+    list1.join(list2);
+    
+    // check for new items     
+    list1.on('arraychange', function (e) {
+        console.log('fasd');
+        if (e.newItem) {
+            var div = '<div> New item was added to list1'
+                      +'<br /> name:' + e.newItem.name
+                      +'<br /> color:' + e.newItem.color
+                      +' </div>';
+            Y.one('body').append(div);
+        }
+    });
+
+    list2.on('arraychange', function (e) {
+        console.log('fasd');
+        if (e.newItem) {
+            var div = '<div> New item was added to list2' 
+                      +'<br /> name:' + e.newItem.name 
+                      +'<br /> color:' + e.newItem.color 
+                      +' </div>';
+            Y.one('body').append(div);
+        }
+    });
+
+});
+
+// show data code
+YUI().use('node', 'json-stringify', function (Y) {
+    Y.one('#show-data').on('click', function () {
+        var json1 = Y.JSON.stringify(list1_data),
+            json2 = Y.JSON.stringify(list2_data),
+            div1 = '<div><label>List 1</label><br />' + json1 + '</div>',
+            div2 = '<div><label>List 2</label><br />' + json2 + '</div>';
+        Y.one('body')
+               .append(div1)
+               .append(div2);
+    });
+});
+</script> 
+ 
+<!--END SOURCE CODE FOR EXAMPLE =============================== --> 
+</body> 
+</html> 

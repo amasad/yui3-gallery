@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd"> 
+<html>
+	<head>
+		<title>YUI Carousel RTL PLUGIN</title>
+		<link type="text/css" rel="stylesheet"
+			  href="build/gallery-carousel-rtl/assets/skins/sam/gallery-carousel-rtl.css">
+			  	  
+		<style type="text/css">
+		.yui3-carousel-content li { width: 50px; }
+    body {direction: rtl;}
+		</style>
+		<script type="text/javascript"
+				src="http://yui.yahooapis.com/3.3.0/build/yui/yui-min.js"
+				charset="utf-8">
+		</script>
+		<script src="build/gallery-carousel/gallery-carousel-min.js" type="text/javascript"> </script>
+		<script src="build/gallery-carousel-rtl/gallery-carousel-rtl-min.js" type="text/javascript"> </script>
+	</head>
+	<body class="yui3-skin-sam">
+    <h2> English </h2>
+    <iframe src="english.html"></iframe>
+    <h2> Arabic </h2>
+		<div id="container" class="yui3-carousel-loading">
+			<ol>
+				<li>&#1608;&#1575;&#1581;&#1583;</li>
+				<li>&#1575;&#1579;&#1606;&#1575;&#1606;</li>
+				<li>&#1579;&#1604;&#1575;&#1579;&#1577;</li>
+				<li>&#1571;&#1585;&#1576;&#1593;&#1577;</li>
+				<li>&#1582;&#1605;&#1587;&#1577;</li>
+			</ol>
+		</div>
+		<h2> Persian </h2>
+		<div id="container2" class="yui3-carousel-loading">
+			<ol>
+				<li>&#1740;&#1705;</li>
+				<li>&#1583;&#1608;</li>
+				<li>&#1587;&#1607;</li>
+				<li>&#1670;&#1607;&#1575;&#1585;</li>
+				<li>&#1662;&#1606;&#1580;</li>
+			</ol>
+		</div>
+		<h2> Hebrew </h2>
+		<div id="container3" class="yui3-carousel-loading">
+			<ol>
+				<li>&#1488;&#1495;&#1491;</li>
+				<li>&#1513;&#1504;&#1497;</li>
+				<li>&#1513;&#1500;&#1493;&#1513;</li>
+				<li>&#1488;&#1512;&#1489;&#1506;</li>
+				<li>&#1495;&#1502;&#1513;</li>
+			</ol>
+		</div>
+	</body>
+	<script type="text/javascript">
+	
+	YUI().use("gallery-carousel", "gallery-carousel-rtl",  "substitute", function (Y) {
+		Y.on("contentready", function () {
+			var carousel = new Y.Carousel({
+				boundingBox: "#container",
+				contentBox: "#container > ol",
+				isCircular: true
+			});
+			carousel.plug(Y.CarouselRTLPlugin, {animation:{speed: 0.5}});
+			carousel.render();
+		}, "#container");
+	});
+  YUI().use("gallery-carousel", "gallery-carousel-rtl",  "substitute", function (Y) {
+		Y.on("contentready", function () {
+			var carousel = new Y.Carousel({
+				boundingBox: "#container2",
+				contentBox: "#container2 > ol",
+				isCircular: true
+			});
+			carousel.plug(Y.CarouselRTLPlugin, {animation:{speed: 0.5}});
+			carousel.render();
+		}, "#container2");
+	YUI().use("gallery-carousel", "gallery-carousel-rtl",  "substitute", function (Y) {
+		Y.on("contentready", function () {
+			var carousel = new Y.Carousel({
+				boundingBox: "#container3",
+				contentBox: "#container3 > ol",
+				isCircular: true
+			});
+			carousel.plug(Y.CarouselRTLPlugin, {animation:{speed: 0.5}});
+			carousel.render();
+		}, "#container3");
+	});
+	});
+	</script>
+</html>
