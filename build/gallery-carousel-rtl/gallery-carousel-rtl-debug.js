@@ -117,4 +117,4 @@ Y.CarouselRTLPlugin = Y.extend(CarouselRTLPlugin, Y.Plugin.Base, {
 });
 
 
-}, '@VERSION@' ,{skinnable:true, requires:['substitute','gallery-carousel','anim','plugin','pluginhost']});
+}, 'gallery-2011.06.01-20-18' ,{skinnable:true, requires:['substitute','gallery-carousel','anim','plugin','pluginhost']});
