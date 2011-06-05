@@ -14,7 +14,8 @@
 	
 	SortableArray.ATTRS = {
 		dataArray: {
-			value: [],
+		  validator: "_validateAnimation",
+			value: []
 		},
 		// If array elements are object, this defines which element is shown in the list
 		observable: {
