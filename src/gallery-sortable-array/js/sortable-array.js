@@ -14,7 +14,7 @@
 	
 	SortableArray.ATTRS = {
 		dataArray: {
-			value: [],
+			value: []
 		},
 		// If array elements are object, this defines which element is shown in the list
 		observable: {
