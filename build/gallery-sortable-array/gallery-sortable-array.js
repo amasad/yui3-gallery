@@ -16,6 +16,7 @@ SortableArray.NS = "sortableArray";
 
 SortableArray.ATTRS = {
 	dataArray: {
+	  validator: "_arrayValidator",
 		value: []
 	},
 	// If array elements are object, this defines which element is shown in the list
